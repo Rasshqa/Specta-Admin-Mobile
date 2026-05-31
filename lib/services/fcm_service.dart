@@ -1,7 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
 import '../providers/admin_provider.dart';
@@ -96,9 +95,6 @@ class FcmService {
           body,
           _notifDetails,
         );
-
-        // Play payment alert sound
-        AudioPlayer().play(AssetSource('sounds/payment_in.mp3'));
 
         // Auto-refresh pending transactions in the provider
         if (navigatorKey.currentContext case final context?) {
