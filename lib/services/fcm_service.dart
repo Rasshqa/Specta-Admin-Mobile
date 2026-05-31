@@ -41,7 +41,7 @@ class FcmService {
       importance: Importance.max,
       priority: Priority.high,
       playSound: true,
-      icon: '@mipmap/launcher_icon',
+      icon: '@mipmap/ic_launcher',
     ),
   );
 
@@ -55,12 +55,16 @@ class FcmService {
     try {
       // 1. Register the Android notification channel on the OS
       const AndroidInitializationSettings androidInit =
-          AndroidInitializationSettings('@mipmap/launcher_icon');
+          AndroidInitializationSettings('@mipmap/ic_launcher');
       await _fln.initialize(const InitializationSettings(android: androidInit));
-      await _fln
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.createNotificationChannel(_channel);
+      
+      final androidImplementation = _fln.resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>();
+      
+      await androidImplementation?.createNotificationChannel(_channel);
+      
+      // Request permission specifically for flutter_local_notifications (Android 13+)
+      await androidImplementation?.requestNotificationsPermission();
 
       // 2. Request notification permission (Android 13+ / iOS)
       final NotificationSettings settings = await _fcm.requestPermission(
