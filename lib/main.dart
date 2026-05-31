@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-import 'services/onesignal_service.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'services/fcm_service.dart';
 import 'state/gatekeeper_state.dart';
 import 'providers/auth_provider.dart';
 import 'providers/admin_provider.dart';
@@ -21,8 +23,15 @@ Future<void> main() async {
     debugPrint('⚠️ Failed to load .env file: $e');
   }
 
-  // Initialise OneSignal (must complete before UI builds)
-  await OneSignalService().initialize();
+  // Initialise Firebase then FCM (must complete before UI builds)
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await FcmService().initialize();
+  } catch (e) {
+    debugPrint('⚠️ Firebase initialization skipped: $e');
+  }
 
   runApp(
     MultiProvider(

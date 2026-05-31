@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "921978903189",
+    "project_id": "specta-xxi",
+    "storage_bucket": "specta-xxi.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921978903189:android:5fa81130c810d92e19d99c",
+        "android_client_info": {
+          "package_name": "com.example.specta_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAC_Z1Dzhg0iEFvkvZuV6tNdfKkaK5rDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
