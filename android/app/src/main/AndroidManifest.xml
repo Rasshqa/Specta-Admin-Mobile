@@ -12,6 +12,11 @@
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true">
+
+        <!-- Set default FCM channel for background/killed state notifications -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="transaction_alerts_channel" />
         
         <activity
             android:name=".MainActivity"
